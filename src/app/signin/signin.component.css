@@ -1,0 +1,14 @@
+.sigin{
+    text-align: justify;
+    padding: 4% 10% 0%  10%;
+} 
+.reg_btn{
+    text-align: center;
+} 
+.header{
+    padding-left: 20px;
+     height: 8%;
+     position:relative;
+     font-family:Verdana, Geneva, Tahoma, sans-serif;
+     opacity: 60%;
+}

@@ -1,0 +1,42 @@
+<div class="container">
+  <table mat-table [dataSource]="dataSource |filter:search" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="Code">
+      <th mat-header-cell *matHeaderCellDef> Code </th>
+      <td mat-cell *matCellDef="let element"> <code>{{element.nick}}</code> </td>
+    </ng-container>
+    <ng-container matColumnDef="City">
+      <th mat-header-cell *matHeaderCellDef> City </th>
+      <td mat-cell *matCellDef="let element"> {{element.cityname |titlecase}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Rooms">
+      <th mat-header-cell *matHeaderCellDef> Total No of rooms</th>
+      <td mat-cell *matCellDef="let element"> {{element.tot_no_rooms}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Location">
+      <th mat-header-cell *matHeaderCellDef> Localities </th>
+      <td mat-cell *matCellDef="let element">
+        <mat-chip-list>
+          <span *ngFor="let loc of element.localities ">
+            <mat-chip> {{loc.loc_name |titlecase}} </mat-chip>
+          </span>
+        </mat-chip-list> 
+      </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Add">
+      <th mat-header-cell *matHeaderCellDef> 
+        <button (click)="opencitydialog()"mat-icon-button color="primary">
+        <mat-icon >add</mat-icon>    
+        </button> </th> 
+        
+      <td mat-cell *matCellDef="let element"> </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   
+  </table>
+</div>

@@ -1,0 +1,81 @@
+<div class="Mcontainer" >
+  <div class="container" [ngStyle]="{'width.px': mobileQuery.matches ? 370 : 700}">
+    <div>
+      <mat-tab-group class="tabs" mat-align-tabs="start">
+        <mat-tab label="All">
+            <div class="content" [ngStyle]="{'width.px': mobileQuery.matches ? 370 : 530}"  fxLayout="row wrap" fxLayoutGap="8px grid" >
+                <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%" layout-gt-xs="row" *ngFor="let i of all | filter:search">
+                  <mat-card class="mat-in" >
+                    <mat-card-title-group (click)="calefil(i) && filterdates()">
+                      <mat-card-title>{{i.roomname | titlecase}}</mat-card-title>
+                      <mat-card-subtitle>
+                        <span><mat-icon><img  src="https://img.icons8.com/fluent/22/000000/place-marker.png"/></mat-icon></span> 
+                        <label class="title">{{i.city |titlecase}}</label> 
+                      </mat-card-subtitle>
+                      <mat-card-subtitle>locality : <b>{{i.locality |titlecase}}</b></mat-card-subtitle>
+                      <mat-card-subtitle>Description : <b>{{i.roomdes |titlecase}}</b></mat-card-subtitle>
+                      <mat-card-subtitle >
+                        <mat-label class="sub-field">Booked Dates :</mat-label>
+                        <mat-chip-list>
+                          <span *ngFor="let bh of i.booked_his ">
+                            <mat-chip class="sub-field" [matTooltip]="bh.customer_mail" >{{bh.startdate.toDate() | date:'MMM d, yy'}}&nbsp; - &nbsp;{{bh.enddate.toDate() | date:'MMM d, yy'}}</mat-chip>
+                          </span>
+                        </mat-chip-list>
+                      </mat-card-subtitle>
+                      <img mat-card-lg-image class="img" src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjYzOTIxfQ&w=4800">
+                      </mat-card-title-group>
+                      <mat-card-actions >
+                      <div class="actionbtn">
+                        <button mat-stroked-button color="primary" class="bbtn" (click)="book(i.status)" [disabled]="!(i.status=='available')">Book</button>
+                      </div>
+                    </mat-card-actions>
+                  </mat-card>
+                  <br>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Available">
+          <div class="content" [ngStyle]="{'width.px': mobileQuery.matches ? 370 : 530}"  fxLayout="row wrap" fxLayoutGap="8px grid">
+            <div fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%" layout-gt-xs="row"*ngFor="let i of avaiable  | filter:search">
+              <mat-card class="mat-in" >
+                <mat-card-title-group>
+                  <mat-card-title>{{i.roomname | titlecase}}</mat-card-title>
+                  <mat-card-subtitle> <span><mat-icon><img src="https://img.icons8.com/fluent/22/000000/place-marker.png"/></mat-icon></span> <label class="title">{{i.location | titlecase}}</label> </mat-card-subtitle>
+                  <mat-card-subtitle>locality : <b>{{i.locality |titlecase}}</b></mat-card-subtitle>
+                  <mat-card-subtitle>Description : <b>{{i.roomdes |titlecase}}</b></mat-card-subtitle>
+                  <mat-card-subtitle><span class="sub-field">Status : <b>{{i.status | titlecase}}</b></span></mat-card-subtitle>
+                  <img mat-card-lg-image class="img" src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjYzOTIxfQ&w=4800">
+                </mat-card-title-group>
+                <mat-card-actions class="actionbtn">
+                  <button mat-stroked-button color="primary" class="bbtn" (click)="book(i.status)" [disabled]="!(i.status=='available')">Book</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+        </div>
+        </mat-tab>
+        <mat-tab label="Booked">
+          <div class="content" [ngStyle]="{'width.px': mobileQuery.matches ? 370 : 530}"  fxLayout="row wrap" fxLayoutGap="8px grid">
+            <div  fxFlex="100%" fxFlex.xs="100%" fxFlex.sm="100%" fxFlex.md="100%" layout-gt-xs="row" *ngFor="let i of booked  | filter:search">
+              <mat-card class="mat-in" >
+                <mat-card-title-group>
+                  <mat-card-title>{{i.roomname | titlecase}}</mat-card-title>
+                  <mat-card-subtitle> <span><mat-icon><img src="https://img.icons8.com/fluent/22/000000/place-marker.png"/></mat-icon></span> <label class="title">{{i.location| titlecase}}</label> </mat-card-subtitle>
+                  <mat-card-subtitle>locality : <b>{{i.locality |titlecase}}</b></mat-card-subtitle>
+                  <mat-card-subtitle>Description : <b>{{i.roomdes |titlecase}}</b></mat-card-subtitle>
+                  <mat-card-subtitle><span class="sub-field">Status : <b>{{i.status}}</b></span></mat-card-subtitle>
+                  <img mat-card-lg-image class="img" src="https://images.unsplash.com/photo-1496417263034-38ec4f0b665a?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjYzOTIxfQ&w=4800">
+                </mat-card-title-group>
+                <mat-card-actions class="actionbtn">
+                  <button mat-stroked-button color="primary"class="bbtn" [disabled]="!(i.status=='available')">Book</button>
+                </mat-card-actions>
+              </mat-card>
+            </div>
+          </div>
+        </mat-tab>
+    </mat-tab-group>
+    </div>
+  </div>
+  <div *ngIf="mobileQuery.matches ? 0 : 1 && disbledates.length>0 && cd" class="container1">
+    <mat-calendar #calendar [startView]="viewD" [rangeMode]="true" color="primary" [dateFilter]="filterdates" (selectedChange)="onSelect($event)&& filterdates()   "></mat-calendar>
+  </div>
+</div>

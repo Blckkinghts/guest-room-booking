@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>New City</h1><br>
+<div mat-dialog-content>
+  <div>
+    <form [formGroup]="cityform">
+      <mat-form-field>
+          <mat-label>City Name</mat-label>
+            <input matInput [(ngModel)]="cityname" #cname  formControlName="cname" placeholder=""  required>
+            <mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Pincode</mat-label>
+            <input matInput type="number" [(ngModel)]="pin" [ngModelOptions]="{standalone: true}" placeholder="" required><mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Total No of Rooms</mat-label>
+            <input matInput type="number" [(ngModel)]="tot"  #t  formControlName="ctot" placeholder="" required><mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field class="example-chip-list">
+            <mat-chip-list #chipList >
+              <mat-chip *ngFor="let i of localities" [selectable]="selectable"
+                       [removable]="removable" (removed)="remove(i)">
+                {{i.loc_name}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="localities "
+                     formControlName="locF"
+                     [matChipInputFor]="chipList"
+                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                     [matChipInputAddOnBlur]="addOnBlur"
+                     (matChipInputTokenEnd)="add($event)" required>
+            </mat-chip-list>
+          </mat-form-field>
+          <br />
+    </form>  
+  </div>
+</div>
+<div mat-dialog-actions class="actions_dialog">
+    <button mat-button  (click)="save()" [disabled]="cityform.invalid" >Add</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
+

@@ -1,0 +1,60 @@
+<mat-progress-bar *ngIf="!role" mode="indeterminate" matTooltip="Loading....!"></mat-progress-bar>
+<div class="container" *ngIf="role" [class.is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="toolbar">
+        <button  (mouseenter)="snav.open()&& snav._animationStarted" mat-icon-button class="icon menu">
+          <mat-icon >menu</mat-icon>
+        </button>
+        <span style="font-size:xx-large;" class="app-name">Dashboard</span>
+        <span class="spacer"></span>
+        <mat-form-field class="form-field" style="height: 70px;width: 200px;" *ngIf="mobileQuery.matches ? false : true">
+          <input  [(ngModel)]="serch" matInput type="text" placeholder="Search">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon >search</mat-icon>   
+          </button>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ngx-auth-firebaseui-avatar 
+				      [canLogout]="false">
+			    </ngx-auth-firebaseui-avatar>
+        <button mat-icon-button class="icon" [matMenuTriggerFor]="menu" >
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <!-- <button mat-menu-item><mat-icon><img src="https://img.icons8.com/color/25/000000/refresh.png"/></mat-icon>Refresh</button> -->
+          <button mat-menu-item (click)="logout()"> <mat-icon><img src="https://img.icons8.com/color/25/000000/logout-rounded--v1.png"/></mat-icon>Logout </button>
+        </mat-menu>
+    </mat-toolbar>
+    <mat-sidenav-container class="sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="'over'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list (click)="snav.close()">
+        <mat-list-item routerLink='profile' class="  parent">
+          <span class="full-width"  >Profile</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/user-male-circle.png"/></span>
+        </mat-list-item>
+        <mat-list-item routerLink='contactadmin'  class=" parent"> 
+          <span class="full-width" >Contact Admin</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/businessman.png"/></span> 
+        </mat-list-item>
+        <mat-list-item routerLink='History'  class="bg-light parent"> 
+          <span class="full-width"  >History</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/activity-history.png"/></span>
+			  </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content >
+     <router-outlet ></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-- <mat-list-item (click)="cdis('payment')" class=" bg-light parent">
+          <span class="full-width" >Review</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/positive-dynamic.png"></span>
+        </mat-list-item> -->

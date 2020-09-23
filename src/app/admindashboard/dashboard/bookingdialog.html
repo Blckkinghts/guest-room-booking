@@ -1,0 +1,145 @@
+<h1 mat-dialog-title>Booking</h1>
+<div mat-dialog-content>
+  <div>
+    
+    <mat-tab-group mat-align-tabs="start" #tabGroup (selectedTabChange)="tabChanged($event)">
+      <form [formGroup]="NBookform">
+        <mat-tab label="New User" [selectedIndex]="stus">
+            <mat-form-field appearance="legacy" >
+              <mat-label>Username</mat-label>
+              <input #uname [(ngModel)]="name" formControlName="uname" matInput required>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy" >
+              <mat-label>Email</mat-label>
+              <input #uemail [(ngModel)]="email"  formControlName="uemail" matInput required>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy" >
+              <mat-label>Phone</mat-label>
+              <input #uphn [(ngModel)]="phone"  formControlName="uphone" matInput required>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="full-width">
+              <mat-select formControlName="gender" #agender [(ngModel)]="gender" placeholder="Gender" required>
+                  <mat-option *ngFor="let gender of genders" [value]="gender">
+                  {{ gender }}
+                  </mat-option>
+              </mat-select>
+              <mat-error>
+                Invalid
+              </mat-error>
+              </mat-form-field>
+              <br />
+            <mat-form-field appearance="legacy" >
+              <mat-label>City for Booking</mat-label>
+              <input #acity [(ngModel)]="city"  readonly formControlName="city" matInput required>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy">
+              <mat-label>Select Locality</mat-label>
+              <mat-select [(ngModel)]="locality"  formControlName="locality"  required>
+                <div *ngFor="let i of local">
+                  <mat-option [value]="i">{{i}}</mat-option>
+                </div>
+              </mat-select>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy">
+            <mat-label>Enter a date range</mat-label>
+              <mat-date-range-input [formGroup]="range"   [min]="minDate" [max]="maxDate" [rangePicker]="picker" required>
+                <input matStartDate formControlName="start"  placeholder="Start date" required>
+                <input matEndDate formControlName="end"   placeholder="End date" required>
+              </mat-date-range-input>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-date-range-picker  #picker></mat-date-range-picker>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy" >
+              <mat-label>User's Marital status</mat-label>
+              <mat-select #msts [(ngModel)]="mastuts"  formControlName="masts" required >
+                <mat-option value="married">Married</mat-option>
+                <mat-option value="single">Single</mat-option>
+              </mat-select>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="legacy" >
+              <mat-label>User's Address</mat-label>
+              <textarea #addr [(ngModel)]="address"  formControlName="addr" matInput required></textarea>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+            <br />
+            <mat-form-field appearance="legacy" >
+              <mat-label>User's city</mat-label>
+              <textarea #addr [(ngModel)]="ucity"  formControlName="uscity" matInput required></textarea>
+              <mat-error>Required</mat-error>
+            </mat-form-field>
+        </mat-tab>
+      </form>  
+      <form [formGroup]="OBookform">
+        <mat-tab label="Old User" [selectedIndex]="stus" >
+             
+          <mat-form-field appearance="legacy">
+            <mat-label >User's Email</mat-label>
+            <input type="text" #uemail
+                   matInput [(ngModel)]="email"
+                   [formControl]="myControl"
+                   [matAutocomplete]="auto" required>
+            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>Required</mat-error>
+          </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy" >
+          <mat-label>User's Phone</mat-label>
+          <input #uphn [(ngModel)]="phone"  formControlName="uphone" matInput required>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+          <mat-label>Select Locality</mat-label>
+          <mat-select [(ngModel)]="locality"  formControlName="locality"  required>
+            <div *ngFor="let i of local">
+              <mat-option [value]="i">{{i}}</mat-option>
+            </div>
+          </mat-select>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy" >
+          <mat-label>City</mat-label>
+          <input #acity [(ngModel)]="city"  readonly formControlName="city" matInput required>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="legacy">
+        <mat-label>Enter a date range</mat-label>
+        <!-- [min]="minDate" [max]="maxDate" -->
+          <mat-date-range-input [formGroup]="range1"  [rangePicker]="picker1" required>
+            <input matStartDate formControlName="start"  placeholder="Start date" required>
+            <input matEndDate formControlName="end"  placeholder="End date" required>
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-date-range-picker  #picker1></mat-date-range-picker>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+        </mat-tab>
+      </form>
+      </mat-tab-group>
+  </div>
+</div>
+<div  mat-dialog-actions class="actions_dialog">
+  <button *ngIf="stus==1" mat-button (click)="onNoClick(range,range1)"  [disabled]="OBookform.invalid">Book For Old</button>
+  <button *ngIf="stus==0" mat-button (click)="onNoClick(range,range1)"  [disabled]="NBookform.invalid">Book For New</button>
+  <button mat-button (click)="close()">Cancel</button>
+</div>

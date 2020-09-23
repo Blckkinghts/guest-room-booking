@@ -1,0 +1,22 @@
+<p style="padding-left: 20px; height: 8%;position: relative;font-family:Verdana, Geneva, Tahoma, sans-serif;opacity: 60%;" class=" mat-display-2  ">
+    Admin Verification</p>
+<div class="container" > 
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+      <mat-form-field class="form-element">
+        <input matInput placeholder="Full Name" [(ngModel)]="name" #aname formControlName="fname" required>
+        <mat-error >
+          Invalid
+        </mat-error>
+        </mat-form-field>
+      <mat-form-field class="form-element">
+        <input matInput [(ngModel)]="phone" formControlName="phone" required ngModelOptions="{standalone: true}" placeholder="Phone Number" >
+        <mat-error >
+          Invalid
+        </mat-error>
+      </mat-form-field>
+      <div class="form-element">
+        <button mat-stroked-button color="primary" type="submit" class="button" [disabled]="!formGroup.valid">Update</button>
+      </div>
+    </form>
+</div>
+  

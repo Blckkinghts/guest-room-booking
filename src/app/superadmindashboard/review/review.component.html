@@ -1,0 +1,33 @@
+
+<div class="container" fxLayout="row" fxLayout.xs="column">
+    <div fxFlex="40%;" fxFlex.xs="80%">
+        <div>
+            <canvas baseChart
+                [datasets]="rromcnt"
+                [labels]="cities"
+                [chartType]="pieChartType">
+            </canvas>
+        </div>
+    </div>
+    <div fxFlex="40%;" fxFlex.xs="80%">
+        <div *ngFor="let i of barcdata |filter:search">
+            <div class="l" style="float: right;">
+                <mat-chip-list>
+                    <div *ngFor="let i of i.roomD">
+                       <mat-chip> <code>{{i.nick}}</code>&nbsp;-&nbsp;{{i.loc |titlecase }} </mat-chip>
+                    </div>
+                </mat-chip-list>
+                </div>
+            <canvas baseChart 
+                    [datasets]="i.data"
+                    [labels]="i.nickn"
+                    [options]="options"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    [colors]="barChartColors"
+                    >
+            </canvas>
+        </div>
+        
+    </div>
+</div>    

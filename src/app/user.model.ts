@@ -1,0 +1,11 @@
+import { Url } from 'url';
+
+export class User {
+    displayName:string;
+    email:string;
+    phoneNumber:string;
+    photoURL:string;
+    providerId:string;
+    uid:string;
+    role:string;
+}

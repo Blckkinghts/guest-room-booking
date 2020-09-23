@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Adding Rooms</h1><br>
+<div mat-dialog-content>
+  <div>
+    <form [formGroup]="userform">
+      <mat-form-field>
+          <mat-label>Room Name</mat-label>
+            <input matInput [(ngModel)]="roomname" #roname  formControlName="rname" placeholder="" required>
+            <mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Locality</mat-label>
+            <input #rloc matInput [(ngModel)]="roomloc" formControlName="rcity" required [formControl]="myControl"  [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error>Invalid</mat-error>
+            <mat-hint>Locality should be unique </mat-hint>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>Address</mat-label>
+            <textarea matInput [(ngModel)]="roomaddr" #raddrs formControlName="raddr" placeholder="" required></textarea>
+            <mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="roomcity" readonly [ngModelOptions]="{standalone: true}"  >
+            <mat-error>Required</mat-error>
+          </mat-form-field>  <br />
+          <mat-form-field>
+              <mat-label>Description</mat-label>
+              <textarea matInput #rodes [(ngModel)]="roomdes" required formControlName="rdes" placeholder=""></textarea>
+              <mat-error>Invalid</mat-error>
+          </mat-form-field>
+          <br /> 
+    </form>  
+  </div>
+</div>
+<div mat-dialog-actions class="actions_dialog">
+    <button mat-button [mat-dialog-close]=""  (click)="save()" [disabled]="userform.invalid" >Add</button>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+</div>
+

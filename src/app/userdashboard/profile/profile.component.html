@@ -1,0 +1,36 @@
+<div class="bg">
+    <h1 style="padding-left: 20px;">User Profile</h1>
+<div class="container" fxLayout="row" fxLayout.xs="column">
+    <div fxFlex="40%;" fxFlex.xs="80%">
+        <div>
+            <a style="padding-left: 120px;">
+                <img src="https://img.icons8.com/color/200/000000/user-menu-male-skin-type-7.png"/>
+            </a>
+        </div>
+    </div>
+    <div fxFlex="40%;" fxFlex.xs="80%">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <mat-label>name</mat-label>
+              <input matInput readonly [value]="profiledata.name" required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput readonly [value]="profiledata.email" required >
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>Phone</mat-label>
+                <input matInput readonly [value]="profiledata.phone" required>
+              </mat-form-field>
+              <mat-form-field class="example-full-width">
+                <mat-label>City</mat-label>
+                <input matInput readonly [value]="profiledata.location" required>
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Address</mat-label>
+              <textarea matInput readonly [value]="profiledata.Address" required></textarea>
+            </mat-form-field>
+          </form>
+    </div>
+</div>    
+</div>

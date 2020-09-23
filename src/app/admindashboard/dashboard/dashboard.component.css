@@ -1,0 +1,112 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+mat-toolbar{
+    background-color: white;
+}
+mat-form-field{
+  width: 300px;
+  margin: 6px ;
+}
+.userdialog{
+  height: 600px;
+  display: flexbox;
+}
+.actions_dialog{
+  padding-right: 20%;
+}
+.menu{
+    color: #106cc8;
+}
+.form-field {
+    display: inline;
+    
+}
+.fab-container{
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+.fabdiv{
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.button {
+  margin-bottom: 17px;
+}
+.fab-toggler {
+  float: right;
+  z-index: 100;
+
+}
+.content { 
+  padding: 16px; 
+  overflow-x: hidden;
+  overflow-y:hidden;
+}
+
+.content > mat-card { 
+  width: 200px; 
+}
+.tabs{
+    background-color: white;
+}
+.button-row {
+  display: table-cell;
+  width: 490px;
+}
+
+.button-row .mat-button-base {
+  margin: 8px 8px 8px 0;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.search{
+  height: 70px;width: 200px;
+}
+.is-mobile .toolbar {
+  position: fixed;
+  z-index: 2;
+}
+
+h1.app-name {
+  margin-left: 8px;
+  
+}
+.dash{
+  font-size:xx-large;
+}
+.sidenav-container {
+  flex: 1;
+}
+
+.is-mobile .sidenav-container {
+  flex: 1 0 auto;
+}
+  

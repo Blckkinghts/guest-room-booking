@@ -1,0 +1,19 @@
+<p  class=" mat-display-2  header">
+    BK Guest Room Booking</p>
+<div class="login">
+    <ngx-auth-firebaseui 
+    [tabIndex]="1"
+    [registrationEnabled]="true"
+    [providers]="[providers.Google]"
+    [resetPasswordEnabled]="true"
+    [min]="8"
+    [max]="15"
+    [enableLengthRule]="true"
+    [enableLowerCaseLetterRule]="true"
+    [enableUpperCaseLetterRule]="true"
+    [enableDigitRule]="true"
+    [guestEnabled]="false"
+    [enableSpecialCharRule]="true"
+    (onSuccess)="success()">
+    </ngx-auth-firebaseui>
+</div>

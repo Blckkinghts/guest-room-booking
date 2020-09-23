@@ -1,0 +1,53 @@
+
+<div class="body"  [ngStyle]="{'width.px': mobileQuery.matches ? 750 : 1535}">
+    <div class="container mat-elevation-z8">  
+        <mat-table #table [dataSource]="dataSource | filter:search" matSort class="mat-cell">
+            <ng-container matColumnDef="photourl">
+                <mat-header-cell *matHeaderCellDef  >User</mat-header-cell>
+                <mat-cell *matCellDef="let row" ><img [matTooltip]="row.name" [src]="row.photoURL" alt="img" width="50" height="50" class="disimg" 
+                    onerror="this.src='https://img.icons8.com/color/100/000000/person-male.png'" ></mat-cell>
+              </ng-container>
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef  >Full Name</mat-header-cell>
+            <mat-cell *matCellDef="let row" >{{row.name |titlecase}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef >Email Id</mat-header-cell>
+            <mat-cell *matCellDef="let row"> <a  target="blank" matTooltip="Send mail" [href]="'https://mail.google.com/mail/u/0/?view=cm&fs=1&to='+row.email+'&tf=1'">{{row.email}}</a></mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef >Number</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.phone}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="City">
+            <mat-header-cell *matHeaderCellDef >City</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.location |titlecase}}</mat-cell>
+          </ng-container>
+          <!-- -->
+          <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef >Address</mat-header-cell>
+            <mat-cell *matCellDef="let row"> <Address>{{row.Address |titlecase}}</Address></mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button color="primary" (click)="addNew()">
+                <mat-icon matTooltip="New User">add</mat-icon>
+              </button>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row; let i=index;">
+              <button mat-icon-button color="primary" (click)="startEdit( row.name, row.phone, row.location, row.email,row.Address)">
+                <mat-icon matTooltip="Edit">edit</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="deleteItem(i, row.name, row.phone, row.City, row.email)">
+                <!-- <mat-icon matTooltip="Remove">delete</mat-icon> -->
+              </button>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+      
+</div>
+
+    

@@ -1,0 +1,74 @@
+<mat-progress-bar *ngIf="!role" mode="indeterminate" matTooltip="Loading....!"></mat-progress-bar>
+<div *ngIf="role" class="container" [class.is-mobile]="mobileQuery.matches">
+    <mat-toolbar class="toolbar">
+        <button (mouseenter)="snav.open()&& snav._animationStarted" mat-icon-button class="icon menu" aria-label="icon-button with menu icon">
+          <mat-icon >menu</mat-icon>
+        </button>
+        <span  class="app-name">Dashboard</span>
+        <span class="spacer"></span>
+        <mat-form-field class="form-field search" *ngIf="mobileQuery.matches ? false : true">
+          <input  [(ngModel)]="serch" matInput type="text" placeholder="Search">
+          <button mat-button matSuffix mat-icon-button aria-label="Clear">
+          <mat-icon>search</mat-icon> 
+          </button>
+        </mat-form-field>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ngx-auth-firebaseui-avatar 
+				      [canLogout]="false">  
+			    </ngx-auth-firebaseui-avatar>
+        <button mat-icon-button class="icon" [matMenuTriggerFor]="menu" aria-label="icon-button with share icon">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item><mat-icon><img src="https://img.icons8.com/color/25/000000/refresh.png"/></mat-icon>Refresh</button>
+          <button mat-menu-item (click)="logout()"> <mat-icon><img src="https://img.icons8.com/color/25/000000/logout-rounded--v1.png"/></mat-icon>Logout </button>
+        </mat-menu>
+    </mat-toolbar>
+    <mat-sidenav-container class="sidenav-container"
+                         [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <mat-sidenav #snav [mode]="'over'"
+                 [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+      <mat-nav-list (click)="snav.close()">
+        <mat-list-item routerLink='cities' (click)="cdis('city')" class=" parent"> 
+          <span class="full-width" >Manage City</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/city.png"/></span>
+			  </mat-list-item>
+        <mat-list-item routerLink='admindetails' (click)="cdis('admin')" class="  parent">
+          <span class="full-width" >Manage Admin</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/admin-settings-male.png"/></span>
+        </mat-list-item>
+        <mat-list-item routerLink='userinfo' (click)="cdis('user')" class="parent"> 
+          <span class="full-width" >Users</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/group-foreground-selected.png"/></span> 
+        </mat-list-item>
+        <mat-list-item routerLink='reivew'(click)="cdis('review')" class=" parent"> 
+          <span class="full-width" >Review</span>
+          <div class="spacer" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+          <span><img src="https://img.icons8.com/color/30/000000/positive-dynamic.png"></span>
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+      <mat-sidenav-content>
+        <router-outlet ></router-outlet>
+      </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<div  (mouseleave)="hideItems()"*ngIf="role" class="fab-container">
+  <div class="button-container">
+      <button (mouseenter)="showItems() && snav.close()" mat-fab color="primary" class="fab-toggler ,button"
+       aria-label="icon button with a delete icon">
+        <mat-icon>add</mat-icon>
+      </button>
+  </div>
+  <div class="fabdiv">
+    <button (click)="btn.fun()" *ngFor="let btn of buttons"
+            mat-mini-fab
+            class="fab-secondary"
+            color="secondary">
+      <i class="material-icons" [matTooltip]="btn.tooltip">{{btn.icon}}</i>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+var date=firebase.firestore.Timestamp.fromDate(new Date());
+                b.daterange.map(d=>{
+                  console.log(date,"   :    ",d.end);
+                  var dend=d.end;
+                  var dstart=d.start;
+                  if(date>=d.end){
+                    this.firedb.collection('bookedrooms').doc(b.city).update({
+                      daterange:firebase.firestore.FieldValue.arrayRemove({start:dstart,end:dend})
+                    }).then(cu=>{
+                      this.firedb.collection('customer').doc(b.customer_mail).update({
+                        daterange:firebase.firestore.FieldValue.arrayRemove({start:dstart,end:dend})
+                      })
+                    }).then(rm=>{
+                      this.firedb.collection('rooms').doc(b.locality).update({
+                        booked_his:firebase.firestore.FieldValue.arrayRemove({start:dstart,end:dend})
+                      })
+                    })
+                  }
+                })

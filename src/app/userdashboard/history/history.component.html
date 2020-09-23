@@ -1,0 +1,93 @@
+<div class="container">
+<p style="padding-left: 20px;font-family:Verdana, Geneva, Tahoma, sans-serif;opacity: 60%;" class=" mat-display-1  ">
+    Currently Booked</p>
+<div class="content"  fxLayout="row wrap" fxLayoutGap="16px grid" >
+    <div  fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let i of mybkg | filter:search">
+        <mat-card  class="mat-in"  >
+            <mat-card-title>{{i.city | titlecase}}</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <h3 matSubheader>Admin Details</h3>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/administrator-male--v1.png"/></mat-icon>
+                    <h4 matLine>{{i.adminname | titlecase}}</h4>
+                    <p matLine>Admin</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/filled-message.png"/></mat-icon>
+                    <h4 matLine>{{i.adminmail }}</h4>
+                    <p matLine>mail</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/phone-disconnected.png"/></mat-icon>
+                    <h4 matLine>{{i.adminphone}}</h4>
+                    <p matLine>contact</p>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-divider matInset></mat-divider>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/signpost.png"/></mat-icon>
+                    <h4 matLine>{{i.locality |titlecase}}</h4>
+                    <p matLine>{{i.city}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/event-accepted.png"/></mat-icon>
+                    <h4 matLine>{{i.daterange.start.toDate() |date:'MMM d, yyyy'}}&nbsp;--&nbsp;{{i.daterange.end.toDate()|date:'MMM d,yyyy'}}</h4>
+                    <p matLine>Booked</p>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+</div>
+
+<mat-divider></mat-divider>
+<p style="padding-left: 20px;font-family:Verdana, Geneva, Tahoma, sans-serif;opacity: 60%;" class=" mat-display-1">
+     History</p>
+
+<div class="content"  fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div  fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let i of myhis | filter:search" >
+        <mat-card class="mat-in"  >
+            <mat-card-title>{{i.city | titlecase}}</mat-card-title>
+            <mat-divider></mat-divider>
+            <mat-list>
+                <h3 matSubheader>Admin Details</h3>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/administrator-male--v1.png"/></mat-icon>
+                    <h4 matLine>{{i.admin_info.adnname | titlecase}}</h4>
+                    <p matLine>Admin</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/filled-message.png"/></mat-icon>
+                    <h4 matLine>{{i.admin_info.adnmail }}</h4>
+                    <p matLine>mail</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/phone-disconnected.png"/></mat-icon>
+                    <h4 matLine>{{i.admin_info.adnphone}}</h4>
+                    <p matLine>contact</p>
+                </mat-list-item>
+                <mat-divider matInset></mat-divider>
+    
+                <mat-divider></mat-divider>
+                
+                <mat-divider matInset></mat-divider>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/signpost.png"/></mat-icon>
+                    <h4 matLine>{{i.locality |titlecase}}</h4>
+                    <p matLine>{{i.city}}</p>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListAvatar><img src="https://img.icons8.com/color/30/000000/event-declined.png"/></mat-icon>
+                    <h4 matLine>{{i.daterange.start.toDate() |date:'MMM d, yyyy'}}&nbsp;--&nbsp;{{i.daterange.end.toDate()|date:'MMM d, yyyy'}}</h4>
+                    <p matLine>Ended</p>
+                </mat-list-item>
+            </mat-list>
+            <mat-card-actions>
+                
+            </mat-card-actions>
+        </mat-card>
+    </div>
+   
+</div>
+
+</div>

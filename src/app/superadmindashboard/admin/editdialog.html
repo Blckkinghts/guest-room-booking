@@ -1,0 +1,49 @@
+<h1 mat-dialog-title><h2 class="section-title">Edit Admin</h2></h1><br>
+<div mat-dialog-content>
+    <form [formGroup]="userDetailsForm">
+        <mat-form-field class="full-width">
+        <input matInput placeholder="Full Name" [(ngModel)]="adname" #aname formControlName="flname" required>
+        <mat-error *ngFor="let validation of validation_messages.flname">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('flname').hasError(validation.type) && (userDetailsForm.get('flname').dirty || userDetailsForm.get('flname').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+        </mat-form-field>
+          
+        <br />
+        <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" readonly [(ngModel)]="email" #aemail formControlName="email" required>
+        <mat-error *ngFor="let validation of validation_messages.email">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('email').hasError(validation.type) && (userDetailsForm.get('email').dirty || userDetailsForm.get('email').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="full-width">
+        <mat-select formControlName="city" [(ngModel)]="cit" #acity placeholder="City" required>
+            <mat-option *ngFor="let city of cities" [value]="city">
+            {{ city.cityname }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngFor="let validation of validation_messages.city">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('city').hasError(validation.type) && (userDetailsForm.get('city').dirty || userDetailsForm.get('city').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+        </mat-form-field>
+        <br />
+        <mat-form-field class="full-width">
+        <input matInput placeholder="Mobile Number" [(ngModel)]="phone" #amobile formControlName="mobile" required>
+        <mat-error *ngFor="let validation of validation_messages.mobile">
+            <mat-error class="error-message" *ngIf="userDetailsForm.get('mobile').hasError(validation.type) && (userDetailsForm.get('mobile').dirty || userDetailsForm.get('mobile').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+        </mat-form-field>    
+        <br />    
+        <mat-form-field class="full-width">
+            <input matInput placeholder="Bank Account Number" [(ngModel)]="acctno" #account formControlName="account" required>
+            <mat-error *ngFor="let validation of validation_messages.account" >
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('account').hasError(validation.type) && (userDetailsForm.get('account').dirty || userDetailsForm.get('account').touched)">{{validation.message}}</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <br />          
+    </form>
+</div>
+<div mat-dialog-actions class="actions_dialog">
+    <button mat-button (click)="save()" [disabled]="userDetailsForm.invalid" >Update</button>
+    <button mat-button [mat-dialog-close]="" (click)="onNoClick()">Cancel</button>
+</div>

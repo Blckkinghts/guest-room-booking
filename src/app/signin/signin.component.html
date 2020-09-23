@@ -1,0 +1,26 @@
+<p   class=" mat-display-2 header ">
+    BK Guest Room Booking</p>
+<div class="sigin">
+    <ngx-auth-firebaseui 
+    [tabIndex]="0"
+    [registrationEnabled]="false"
+    [providers]="[providers.Google]"
+    [resetPasswordEnabled]="true"
+    [min]="8"
+    [max]="15"
+    [enableLengthRule]="true"
+    [enableLowerCaseLetterRule]="true"
+    [enableUpperCaseLetterRule]="true"
+    [enableDigitRule]="true"
+    [enableSpecialCharRule]="true"
+    (onSuccess)="success()">
+    </ngx-auth-firebaseui>
+</div>
+<br />
+<div *ngIf="!(usermail)" class="reg_btn">
+    <label >Don't have an account?</label>&nbsp;&nbsp;
+    <button mat-stroked-button color="primary" (click)="login()">Register</button>
+</div>
+<div *ngIf="(usermail)" class="reg_btn">
+    <button mat-stroked-button color="primary" (click)="success()">Go to Dashboard</button>
+</div>
