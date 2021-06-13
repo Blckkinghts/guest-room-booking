@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyBFDJbGdh8XSD5V_mt6p5nEMIVRCEYQ8xo",
-    authDomain: "rapp-877.firebaseapp.com",
-    databaseURL: "https://rapp-877.firebaseio.com",
+    apiKey: "",
+    authDomain: ".firebaseapp.com",
+    databaseURL: "https://.firebaseio.com",
     projectId: "rapp-877",
-    storageBucket: "rapp-877.appspot.com",
-    messagingSenderId: "809778872212",
-    appId: "1:809778872212:web:01ecdc0a14c85600c3d981",
-    measurementId: "G-4PCKRM78X9"
+    storageBucket: ".appspot.com",
+    messagingSenderId: "",
+    appId: "1::web:",
+    measurementId: "G-"
   }
 };
 
